@@ -17,7 +17,7 @@ var bodyParser = require("body-parser");
 var router = express.Router();
 
 var redis = require('redis');
-var client = redis.createClient();
+var client = redis.createClient('redis://h:p4ajgf5980l9s8fg2h8cq8c6ung@ec2-46-137-76-242.eu-west-1.compute.amazonaws.com:7879');
 var async = require("async");
 
 
