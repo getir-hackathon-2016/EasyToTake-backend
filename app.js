@@ -415,7 +415,9 @@ router.post("/checkout", function (req, res) {
 
 app.use('/', router);
 
-app.listen(3001, function () {
+var port = process.env.PORT || 3001;
+
+app.listen(port, function () {
     console.log('app listening on port 3001!');
 });
 
