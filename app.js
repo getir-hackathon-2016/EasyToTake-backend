@@ -1,3 +1,7 @@
+/**
+ * used only for serve test data
+ */
+
 //var jsonServer = require("json-server");
 //var server = jsonServer.create();
 //server.use(jsonServer.defaults());
@@ -333,6 +337,12 @@ router.post("/romoveshoppingcard", function (req, res) {
 
 router.post("/checkout", function (req, res) {
 
+    /**
+     * TODO decrement stock
+     */
+
+    console.log("post request for check out product to cached ");
+
     var userOid = req.query.userOid;
 
 
@@ -378,7 +388,7 @@ router.post("/checkout", function (req, res) {
             sc.parentOid = item.parentOid;
 
             sc.save(function (err) {
-                console.log("shopping card cekout err:" + err)
+                console.log("shopping card chekout err:" + err)
             });
 
 
@@ -396,9 +406,6 @@ router.post("/checkout", function (req, res) {
 
         }
     });
-
-
-    console.log("post request for check out product to cached ");
 
 
     var response = {"content": "ignore", "success": true};
