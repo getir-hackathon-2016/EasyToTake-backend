@@ -1,0 +1,450 @@
+{
+  "messengers": [
+    {
+      "name": "My Name is Co-1",
+      "oid": "1",
+      "picture": "co.png",
+      "latitude": "41.077529",
+      "longitude": "29.024492",
+      "distance": "4 min"
+    },
+    {
+      "name": "My Name is Co-2",
+      "oid": "2",
+      "picture": "co.png",
+      "latitude": "41.080351",
+      "longitude": "29.022255",
+      "distance": "8 min"
+    },
+    {
+      "name": "My Name is Co-3",
+      "oid": "3",
+      "picture": "co.png",
+      "latitude": "41.081607",
+      "longitude": "29.018800",
+      "distance": "5 min"
+    },
+    {
+      "name": "My Name is Co-4",
+      "oid": "4",
+      "picture": "co.png",
+      "latitude": "41.081233",
+      "longitude": "29.002949",
+      "distance": "9 min"
+    },
+    {
+      "name": "My Name is Co-5",
+      "oid": "5",
+      "picture": "co.png",
+      "latitude": "41.088317",
+      "longitude": "29.000781",
+      "distance": "6 min"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Category-1",
+      "oid": "1",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-2",
+      "oid": "2",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-3",
+      "oid": "3",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-4",
+      "oid": "4",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-5",
+      "oid": "5",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-6",
+      "oid": "6",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-1",
+      "oid": "1",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-2",
+      "oid": "2",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-3",
+      "oid": "3",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-4",
+      "oid": "4",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-5",
+      "oid": "5",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-6",
+      "oid": "6",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-7",
+      "oid": "7",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-8",
+      "oid": "8",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-9",
+      "oid": "9",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-10",
+      "oid": "10",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-11",
+      "oid": "11",
+      "picture": "co.png"
+    },
+    {
+      "name": "Category-12",
+      "oid": "12",
+      "picture": "co.png"
+    }
+  ],
+  "products": [
+    {
+      "oid": "1",
+      "parentOid": "1",
+      "name": "Products-1.1",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "2",
+      "parentOid": "1",
+      "name": "Products-1.2",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "3",
+      "parentOid": "1",
+      "name": "Products-1.3",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "4",
+      "parentOid": "1",
+      "name": "Products-1.4",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "5",
+      "parentOid": "1",
+      "name": "Products-1.5",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "6",
+      "parentOid": "1",
+      "name": "Products-1.6",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "7",
+      "parentOid": "1",
+      "name": "Products-1.7",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "8",
+      "parentOid": "1",
+      "name": "Products-1.8",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "9",
+      "parentOid": "1",
+      "name": "Products-1.9",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "10",
+      "parentOid": "1",
+      "name": "Products-1.10",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "11",
+      "parentOid": "2",
+      "name": "Products-2.1",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "12",
+      "parentOid": "2",
+      "name": "Products-2.2",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "1",
+      "parentOid": "2",
+      "name": "Products-2.3",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "13",
+      "parentOid": "2",
+      "name": "Products-2.4",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "14",
+      "parentOid": "2",
+      "name": "Products-2.5",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "15",
+      "parentOid": "2",
+      "name": "Products-2.6",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "16",
+      "parentOid": "2",
+      "name": "Products-2.7",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "17",
+      "parentOid": "2",
+      "name": "Products-2.8",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "18",
+      "parentOid": "2",
+      "name": "Products-2.9",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "19",
+      "parentOid": "2",
+      "name": "Products-2.10",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "20",
+      "parentOid": "3",
+      "name": "Products-3.1",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "21",
+      "parentOid": "3",
+      "name": "Products-3.2",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "22",
+      "parentOid": "3",
+      "name": "Products-3.3",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "23",
+      "parentOid": "3",
+      "name": "Products-3.4",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "24",
+      "parentOid": "3",
+      "name": "Products-3.5",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "25",
+      "parentOid": "3",
+      "name": "Products-3.6",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "26",
+      "parentOid": "3",
+      "name": "Products-3.7",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "27",
+      "parentOid": "3",
+      "name": "Products-3.8",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "28",
+      "parentOid": "3",
+      "name": "Products-3.9",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "29",
+      "parentOid": "3",
+      "name": "Products-3.10",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "30",
+      "parentOid": "1",
+      "name": "Products-1.11",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "31",
+      "parentOid": "2",
+      "name": "Products-2.11",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "32",
+      "parentOid": "3",
+      "name": "Products-3.11",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "33",
+      "parentOid": "1",
+      "name": "Products-1.12",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "34",
+      "parentOid": "2",
+      "name": "Products-2.12",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "35",
+      "parentOid": "3",
+      "name": "Products-3.12",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "36",
+      "parentOid": "1",
+      "name": "Products-1.13",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "37",
+      "parentOid": "2",
+      "name": "Products-2.13",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    },
+    {
+      "oid": "38",
+      "parentOid": "3",
+      "name": "Products-3.13",
+      "picture": "co.png",
+      "stock": "5",
+      "price": "3"
+    }
+  ]
+}
