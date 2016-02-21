@@ -5,6 +5,7 @@ var messengerSchema = new Schema({
     "name": String,
     "picture": String,
     "latitude": String,
-    "longitude": String
+    "longitude": String,
+    "status": String
 });
 module.exports = mongoose.model('messenger', messengerSchema);

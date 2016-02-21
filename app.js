@@ -14,6 +14,7 @@ var router = express.Router();
 
 var redis = require('redis');
 var client = redis.createClient();
+var async = require("async");
 
 
 var MESSENGER = require("./model/messenger");
@@ -21,7 +22,8 @@ var CATEGORY = require("./model/category");
 var PRODUCT = require("./model/product");
 var SHOPPINGCARD = require("./model/shoppingcard");
 
-mongoose.connect('mongodb://localhost:27017/data/db', function () {
+
+mongoose.connect('mongodb://easytotake:easytotake@ds031691.mongolab.com:31691/easytotake', function () {
 
     console.log("dropping database...");
 
@@ -38,6 +40,7 @@ mongoose.connect('mongodb://localhost:27017/data/db', function () {
             var ms = new MESSENGER();
             ms.oid = i + 1;
             ms.name = "Messenger-" + (i + 1);
+            ms.status = "READY"; // READY o IN_PROGRESS
 
             if (i % 2) {
                 ms.latitude = 41.077529 + (i * (Math.floor(Math.random() * 5) + 1) / 1000);
@@ -46,7 +49,7 @@ mongoose.connect('mongodb://localhost:27017/data/db', function () {
                 ms.latitude = 41.077529 - (i * (Math.floor(Math.random() * 5) + 1) / 1000);
                 ms.longitude = 29.024492 - (i * (Math.floor(Math.random() * 5) + 1) / 1000);
             }
-            ms.picture = "co.png";
+            ms.picture = "ready.png";
 
             ms.save(function (err) {
                 if (err) {
@@ -57,7 +60,7 @@ mongoose.connect('mongodb://localhost:27017/data/db', function () {
             var cg = new CATEGORY();
             cg.oid = i + 1;
             cg.name = "Category-" + (i + 1);
-            cg.picture = "co.png";
+            cg.picture = "ready.png";
 
             cg.save(function (err) {
                 if (err) {
@@ -71,7 +74,7 @@ mongoose.connect('mongodb://localhost:27017/data/db', function () {
                 p.oid = l;
                 p.parentOid = i + 1;
                 p.name = "Product-" + l;
-                p.picture = "co.png";
+                p.picture = "ready.png";
                 p.price = (i + 1);
                 p.stock = (i + 1);
 
@@ -137,12 +140,13 @@ router.get("/messengers", function (req, res) {
                  */
 
                 var obj = {};
-                obj["distance"] = (Math.floor(Math.random() * 20) + 1) + " dakika";
+                obj["distance"] = (Math.floor(Math.random() * 20) + 1) + " minutes";
                 obj["oid"] = item.oid;
                 obj["name"] = item.name;
                 obj["picture"] = item.picture;
                 obj["latitude"] = item.latitude;
                 obj["longitude"] = item.longitude;
+                obj["status"] = item.status;
                 response.push(obj)
             }
         }
@@ -201,24 +205,29 @@ router.get("/shoppingCard", function (req, res) {
     client.smembers(userOid, function (err, arr) {
 
         var response = [];
-        for (var i = 0; i < arr.length; i++) {
-            var item = arr[i];
-            var obj = JSON.parse(item);
 
-            var key = (userOid + obj.oid);
+        if (arr.length > 0) {
+            arr.forEach(function (item) {
+                var _obj = JSON.parse(item);
+                var key = (userOid + _obj.oid);
+                client.get(key, function (err, result) {
+                    var obj = JSON.parse(item);
+                    if (result) { // that has
+                        obj.price = (Number(result)) * (Number(obj.price));
+                    }
+                    console.log("get", obj);
+                    response.push(obj);
 
-            client.get(key, function (err, result) {
-                if (result) { // that has
-                    obj.price = (Number(result)) * (Number(obj.price));
-                }
-
-                response.push(obj);
-
-                if (i == arr.length) {
-                    res.json(response);
-                }
+                    if (response.length == arr.length) {
+                        res.json(response);
+                    }
+                });
             });
+        } else {
+            res.json([]);
         }
+
+
     });
 
 
@@ -234,30 +243,33 @@ router.get("/shoppingCard/count", function (req, res) {
 
     client.smembers(userOid, function (err, arr) {
         var count = 0;
-        for (var i = 0; i < arr.length; i++) {
-            var item = arr[i];
-            var obj = JSON.parse(item);
 
-            var key = (userOid + obj.oid);
+        var dummy = [];
+        if (arr.length > 0) {
+            arr.forEach(function (item) {
+                var _obj = JSON.parse(item);
+                var key = (userOid + _obj.oid);
+                client.get(key, function (err, result) {
+                    console.log("result is " + result);
+                    if (result) { // that has
+                        count += (Number(result))
+                    } else {
+                        count++;
+                    }
+                    dummy.push(_obj);
 
-            console.log("key is :" + key)
+                    if (dummy.length == arr.length) {
+                        console.log("count is " + count)
+                        var response = {"content": count + "", "success": true};
+                        res.json(response);
+                    }
 
-            client.get(key, function (err, result) {
 
-                console.log("result is " + result);
-                if (result) { // that has
-                    count += (Number(result))
-                } else {
-                    count++;
-                }
-
-                if (i == arr.length) {
-                    var response = {"content": count + "", "success": true};
-                    res.json(response);
-                }
-
-                console.log("count is " + count)
+                });
             });
+        } else {
+            var response = {"content": "0", "success": true};
+            res.json(response);
         }
 
     });
@@ -290,6 +302,104 @@ router.post("/updateshoppingcard", function (req, res) {
         }
 
     });
+
+    var response = {"content": "ignore", "success": true};
+    res.json(response);
+
+});
+
+router.post("/romoveshoppingcard", function (req, res) {
+
+    console.log("post request for remove product to cached ");
+
+    console.log(req.body.parentOid);
+
+    var key = (req.body.parentOid + req.body.oid);
+
+    client.get(key, function (err, result) {
+        if (result) { // that mean has more
+            client.set(key, (Number(result) - 1)); // decrement 1
+        } else {
+            client.srem(req.body.parentOid, JSON.stringify(req.body))
+        }
+
+        console.log("result:" + result);
+    });
+
+    var response = {"content": "ignore", "success": true};
+    res.json(response);
+
+});
+
+router.post("/checkout", function (req, res) {
+
+    var userOid = req.query.userOid;
+
+
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    }
+
+    client.smembers(userOid, function (err, arr) {
+
+        var items = [];
+
+        for (var i = 0; i < arr.length; i++) {
+            var item = arr[i];
+            var obj = JSON.parse(item);
+
+            var key = (userOid + obj.oid);
+
+            client.get(key, function (err, result) {
+                if (result) { // that has
+                    obj.price = (Number(result)) * (Number(obj.price));
+                }
+                items.push(obj);
+            });
+        }
+
+        var groupOid = guid();
+
+        for (var i = 0; i < items.length; i++) {
+
+            var item = items[i];
+
+            var sc = new SHOPPINGCARD();
+            sc.groupOid = groupOid;
+            sc.userOid = userOid;
+            sc.price = item.price;
+            sc.parentOid = item.parentOid;
+
+            sc.save(function (err) {
+                console.log("shopping card cekout err:" + err)
+            });
+
+
+            /**
+             * update Messenger status
+             */
+
+            MESSENGER.findOne({oid: {$eq: parentOid}}, function (err, item) {
+                if (err) {
+                    item.status = "IN_PROGRESS";
+                    item.picature = "busy.png";
+                    MESSENGER.update(item); // TODO i am ignore
+                }
+            });
+
+        }
+    });
+
+
+    console.log("post request for check out product to cached ");
+
 
     var response = {"content": "ignore", "success": true};
     res.json(response);

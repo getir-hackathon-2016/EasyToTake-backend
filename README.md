@@ -1,2 +1,4 @@
-# kapgelco-backend
-Backend for KapGelCo application
+# EasyToTake-backend
+Backend for EasyToTake application
+
+# Motivation

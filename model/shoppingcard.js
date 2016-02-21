@@ -5,6 +5,7 @@ var shoppingcardSchema = new Schema({
     "name": String,
     "price": String,
     "userOid": String,
-    "parentOid": String // Product Oid
+    "parentOid": String,// Product Oid
+    "groupOid": String
 });
 module.exports = mongoose.model('shoppingcard', shoppingcardSchema);
